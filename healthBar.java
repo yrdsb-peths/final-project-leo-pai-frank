@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class healthBar here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Leo
+ * 2025.05.22
  */
 public class healthBar extends Actor
 {
@@ -17,5 +17,9 @@ public class healthBar extends Actor
         GreenfootImage image = new GreenfootImage("HealthBar.png");
         image.scale(40, 50);
         setImage(image);
+    }
+    public void getHurt()
+    {
+        if (
     }
 }
