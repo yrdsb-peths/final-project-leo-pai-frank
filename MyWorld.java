@@ -7,6 +7,6 @@ public class MyWorld extends World {
     private healthBar healthBar2;
     public MyWorld() {
         super(600, 400, 1);
-        setBackground("")
+        
     }
 }
