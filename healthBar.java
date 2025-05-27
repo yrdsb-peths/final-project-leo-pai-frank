@@ -26,7 +26,7 @@ public class healthBar extends Actor
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         //save the max bar and current bar
-        fullBarImage = new GreenfootImage("HealthBar.png");
+        fullBarImage = new GreenfootImage("healthBar.png");
         barWidth = fullBarImage.getWidth();
         barHeight = fullBarImage.getHeight();
         //set image for bar
