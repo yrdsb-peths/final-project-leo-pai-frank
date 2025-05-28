@@ -12,8 +12,8 @@ public class MyWorld extends World {
         healthBar1 = new healthBar("healthBar.png",100);
         healthBar2 = new healthBar("healthBar.png",100);
         
-        addObject(healthBar1, 100, 20);
-        addObject(healthBar2, 500, 20);
+        addObject(healthBar1, 95, 20);
+        addObject(healthBar2, 505, 20);
         
     }
 }
