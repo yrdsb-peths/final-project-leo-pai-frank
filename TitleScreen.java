@@ -18,6 +18,7 @@ public class TitleScreen extends World
         super(600, 400, 1);
         Label titleLabel = new Label("Two Guys", 60);
         addObject(titleLabel,getWidth()/2,getHeight()/4);
+        prepare();
     }
     
     public void act()
@@ -27,5 +28,11 @@ public class TitleScreen extends World
             MyWorld gameWorld = new MyWorld();
             Greenfoot.setWorld(gameWorld);
         }
+    }
+    
+    private void prepare()
+    {
+        Dog dog = new Dog();
+        addObject(dog,422,133);
     }
 }
