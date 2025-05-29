@@ -15,5 +15,14 @@ public class Dog extends Actor
     public void act()
     {
         // Add your action code here.
+        int speed = 2;
+        if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
+        if (Greenfoot.isKeyDown("s")) { setLocation(getX(), getY() + speed); }
+        if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
+        if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY()); }
+        if (Greenfoot.isKeyDown("f")) { shoot(); }
+        
+        
     }
+    
 }
