@@ -15,5 +15,13 @@ public class bullet extends Actor
     public void act()
     {
         // Add your action code here.
+        
+        if (isTouching(Cat.class)) 
+        {
+        Dog target = (Cat)getOneIntersectingObject(Cat.class);
+        target.loseHealth(1);
+        getWorld().removeObject(this);
+            
+        }
     }
 }

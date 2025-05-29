@@ -12,10 +12,11 @@ public class Dog extends Actor
      * Act - do whatever the Dog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    int speed = 2;
     public void act()
     {
         // Add your action code here.
-        int speed = 2;
+        
         if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
         if (Greenfoot.isKeyDown("s")) { setLocation(getX(), getY() + speed); }
         if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
@@ -24,6 +25,7 @@ public class Dog extends Actor
         
         
     }
+    
     
     
 }
