@@ -6,6 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
+
 public class Dog extends Actor
 {
     /**
@@ -13,6 +14,13 @@ public class Dog extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int speed = 2;
+    private healthBar opponentHealthBar;
+    
+    public Dog(healthBar opponent)
+    {
+        this.opponentHealthBar = opponent;
+    }
+    
     public void act()
     {
         // Add your action code here.
@@ -24,6 +32,15 @@ public class Dog extends Actor
         if (Greenfoot.isKeyDown("f")) { shoot(); }
         
         
+    } 
+    public void shoot()
+    {
+        bullet bullet = new bullet("dog");
+        getWorld().addObject(bullet, getX() + 30, getY());
+    }
+    public void takeDamage(int amount)
+    {
+        opponentHealthBar.loseHealth(amount);
     }
     
     
