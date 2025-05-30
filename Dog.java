@@ -21,6 +21,11 @@ public class Dog extends Actor
         this.opponentHealthBar = opponent;
     }
     
+    public Dog()
+    {
+        setImage("dog1.png");
+    }
+    
     public void act()
     {
         // Add your action code here.
