@@ -18,8 +18,8 @@ public class MyWorld extends World {
         addObject(healthBar1, 95, 20);
         addObject(healthBar2, 705, 20);
         
-        addObject(cat, 100, 200);
-        addObject(dog, 700, 200);
+        addObject(dog, 100, 200);
+        addObject(cat, 700, 200);
         
     }
 }
