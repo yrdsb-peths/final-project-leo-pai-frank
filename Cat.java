@@ -14,6 +14,11 @@ public class Cat extends Actor
      */
     private healthBar opponentHealthBar;
     
+    public Cat()
+    {
+        setImage("cat2.png");
+    }
+    
     public Cat(healthBar opponent)
     {
         this.opponentHealthBar = opponent;
@@ -23,9 +28,7 @@ public class Cat extends Actor
         if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
         if (Greenfoot.isKeyDown("left")) setLocation(getX() - 4, getY());
         if (Greenfoot.isKeyDown("up")) setLocation(getX(), getY() - 4);
-        if (Greenfoot.isKeyDown("down")) setLocation(getX(), getY() + 4);
-        
-        if(Greenfoot.isKeyDown("shift")) shoot();
+        if(Greenfoot.isKeyDown("down")) shoot();
     }
     
     public void shoot()
