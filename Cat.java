@@ -16,7 +16,7 @@ public class Cat extends Actor
     
     public Cat()
     {
-        setImage("cat1.png");
+        setImage("cat2.png");
     }
     
     public Cat(healthBar opponent)
