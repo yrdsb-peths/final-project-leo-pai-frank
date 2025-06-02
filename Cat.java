@@ -12,16 +12,16 @@ public class Cat extends Actor
      * Act - do whatever the Cat wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private healthBar opponentHealthBar;
+    private HealthBar myHealthBar;
     
     public Cat()
     {
         setImage("cat2.png");
     }
     
-    public Cat(healthBar opponent)
+    public Cat(HealthBar opponent)
     {
-        this.opponentHealthBar = opponent;
+        this.myHealthBar = opponent;
     }
     public void act()
     {
@@ -33,12 +33,12 @@ public class Cat extends Actor
     
     public void shoot()
     {
-        bullet bullet = new bullet("dog");
+        bullet bullet = new bullet("cat");
         getWorld().addObject(bullet, getX()-30, getY());
     }
     
     public void takeDamage(int amount)
     {
-        opponentHealthBar.loseHealth(amount);
+        myHealthBar.loseHealth(amount);
     }
 }

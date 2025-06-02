@@ -14,11 +14,11 @@ public class Dog extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int speed = 2;
-    private healthBar opponentHealthBar;
+    private HealthBar myHealthBar;
     
-    public Dog(healthBar opponent)
+    public Dog(HealthBar opponent)
     {
-        this.opponentHealthBar = opponent;
+        this.myHealthBar = opponent;
     }
     
     public Dog()
@@ -46,7 +46,7 @@ public class Dog extends Actor
     
     public void takeDamage(int amount)
     {
-        opponentHealthBar.loseHealth(amount);
+        myHealthBar.loseHealth(amount);
     }
     
 }

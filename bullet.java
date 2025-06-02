@@ -18,28 +18,49 @@ public class bullet extends Actor
     public bullet(String owner)
     {
         this.owner = owner;
+        GreenfootImage image = new GreenfootImage("bullet.png");
+        if(owner.equals("cat"))
+        {
+            image.mirrorHorizontally();
+            speed = -3;
+        }
+        else
+        {
+            speed = 3;
+        }
+        setImage(image);
     }
     
     public void act()
     {
         // Add your action code here.
         move(speed);
-        if (owner.equals("cat")&&isTouching(Cat.class)) 
-        {
-            Dog target = (Dog)getOneIntersectingObject(Dog.class);
-            target.takeDamage(3);
-            getWorld().removeObject(this);    
-        }
-        else if (owner.equals("dog")&&isTouching(Dog.class)) 
-        {
-            Cat target = (Cat)getOneIntersectingObject(Cat.class);
-            target.takeDamage(3);
-            getWorld().removeObject(this);    
-        }
         
-        if(getX() < 5 || getX() >getWorld().getWidth() - 5)
+        if(isAtEdge())
         {
             getWorld().removeObject(this);
+            return;
+        }
+        
+        if(owner.equals("cat"))
+        {
+            Dog target = (Dog)getOneIntersectingObject(Dog.class);
+            if(target != null)
+            {
+                target.takeDamage(10);
+                getWorld().removeObject(this);
+                return;
+            }
+        }
+        else if(owner.equals("dog"))
+        {
+            Cat target = (Cat)getOneIntersectingObject(Cat.class);
+            if(target != null)
+            {
+                target.takeDamage(10);
+                getWorld().removeObject(this);
+                return;
+            } 
         }
     }
 }
