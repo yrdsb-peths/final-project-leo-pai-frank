@@ -14,6 +14,11 @@ public class Cat extends Actor
      */
     private healthBar opponentHealthBar;
     
+    public Cat()
+    {
+        setImage("cat1.png");
+    }
+    
     public Cat(healthBar opponent)
     {
         this.opponentHealthBar = opponent;
