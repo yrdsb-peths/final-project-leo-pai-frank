@@ -12,7 +12,7 @@ public class bullet extends Actor
      * Act - do whatever the bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int speed = 4;
+    private int speed = 3;
     private String owner;
     
     public bullet(String owner)
