@@ -23,9 +23,7 @@ public class Dog extends Actor
     
     public Dog()
     {
-        GreenfootImage image = new GreenfootImage("dog1.png");
-        image.scale(20, 20);
-        setImage(image);
+        setImage("dog1.png");
     }
     
     public void act()
