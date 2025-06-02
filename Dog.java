@@ -42,11 +42,11 @@ public class Dog extends Actor
         bullet bullet = new bullet("dog");
         getWorld().addObject(bullet, getX() + 30, getY());
     }
+    
+    
     public void takeDamage(int amount)
     {
         opponentHealthBar.loseHealth(amount);
     }
-    
-    
     
 }
