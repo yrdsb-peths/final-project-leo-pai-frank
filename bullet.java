@@ -36,8 +36,7 @@ public class bullet extends Actor
     
     public void act()
     {
-        // Add your action code here.
-        move(speed);
+        move(speed);// bullet moving
         
         if(isAtEdge())
         {
@@ -54,6 +53,7 @@ public class bullet extends Actor
                 getWorld().removeObject(this);
                 return;
             }
+            //
         }
         else if(owner.equals("dog"))
         {
