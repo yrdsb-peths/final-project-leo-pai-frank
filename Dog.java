@@ -14,9 +14,9 @@ public class Dog extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int speed = 4;
-    private HealthBar myHealthBar;
-    private int shootCooldown = 0;
-    private int shootDelay = 15;
+    private HealthBar myHealthBar;// make the bar owner
+    private int shootCooldown = 0;//time shoot
+    private int shootDelay = 15;//time shoot
     
     public Dog(HealthBar opponent)
     {
@@ -25,40 +25,41 @@ public class Dog extends Actor
     
     public Dog()
     {
-        setImage("dog1.png");
+        setImage("dog1.png");// connect the bar with Dog
     }
     
     public void act()
     {
-        // Add your action code here.
-        
         if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
         if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
         if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY()); }
+        // the move control set
         
         if(shootCooldown > 0)
         {
             shootCooldown--;
+            //counter for shoot time
         }
         
         if(Greenfoot.isKeyDown("s") && shootCooldown == 0 )
         {
             shoot();
             shootCooldown = shootDelay;
+            // the shoot control button
         }
-        
-        
     } 
     public void shoot()
     {
         bullet bullet = new bullet("dog");
         getWorld().addObject(bullet, getX() + 30, getY());
+        // the bullet shoot way with cat, from the dog X and Y
     }
     
     
     public void takeDamage(int amount)
     {
         myHealthBar.loseHealth(amount);
+        //the bar lose
     }
     
 }
