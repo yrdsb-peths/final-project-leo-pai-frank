@@ -33,7 +33,6 @@ public class Cat extends Actor
     {
         checkKeys();
         fall();
-        checkGround();
         if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
         if (Greenfoot.isKeyDown("left")) setLocation(getX() - 4, getY());
         if (Greenfoot.isKeyDown("up")) setLocation(getX(), getY() - 4);
@@ -59,21 +58,7 @@ public class Cat extends Actor
         setLocation(getX(), getY() + ySpeed);
         ySpeed += gravity;
     }
-    public void checkGround() {
-        if (isTouching(Ground.class)) 
-        {
-            ySpeed = 0;
-            onGround = true;
-            while (isTouching(Ground.class)) 
-            {
-                setLocation(getX(), getY() - 1);
-            }
-        }  
-        else
-        {
-            onGround = false;
-        }
-    }
+    
 
 
     public void shoot()
