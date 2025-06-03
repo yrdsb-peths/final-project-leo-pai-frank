@@ -48,6 +48,7 @@ public class HealthBar extends Actor
         {
             setImage(new GreenfootImage(barWidth, barHeight));
             return;
+            //when the bar less then 0, copy the create image.
         }
         
         GreenfootImage healthBar = new GreenfootImage(fullBarImage);
@@ -70,10 +71,10 @@ public class HealthBar extends Actor
      */
     public void loseHealth(int amount)
     {
-        currentHealth -= amount;
+        currentHealth -= amount;//lose the bar
         if(currentHealth < 0)
         {
-            currentHealth = 0;
+            currentHealth = 0;// make sure the bar can't less then 0
         }
         updateBar();
     }
