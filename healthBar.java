@@ -21,10 +21,13 @@ public class HealthBar extends Actor
     private int currentHealth;
     private int barWidth;
     private int barHeight;
-    public HealthBar(String imageName, int maxHealth)
+    private boolean isR = false;
+    
+    public HealthBar(String imageName, int maxHealth, boolean isR)
     {
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
+        this.isR = isR;
         //save the max bar and current bar
         fullBarImage = new GreenfootImage("HealthBar.png");
         barWidth = fullBarImage.getWidth();
@@ -41,14 +44,26 @@ public class HealthBar extends Actor
         //set new bar image 
         
         int currentWidth = (int)((double)currentHealth / maxHealth * barWidth);
+        if(currentWidth <= 0)
+        {
+            setImage(new GreenfootImage(barWidth, barHeight));
+            return;
+        }
+        
         GreenfootImage healthBar = new GreenfootImage(fullBarImage);
         //copy the bar before, to make the bar be gray
         healthBar.scale(currentWidth, barHeight);
         //deline the bar with width
+        if(isR)
+        {
+            background.drawImage(healthBar, barWidth - currentWidth, 0);//draw in gray bar
+        }
+        else
+        {
+            background.drawImage(healthBar, 0, 0);//draw in gray bar
+        }
         
-        background.drawImage(healthBar, 0, 0);//draw in gray bar
-        setImage(background);
-        //set bar background
+        setImage(background); //set bar background
     }
     /**
      * when dog hurt will use loseHealth
@@ -59,8 +74,8 @@ public class HealthBar extends Actor
         if(currentHealth < 0)
         {
             currentHealth = 0;
-            updateBar();
         }
+        updateBar();
     }
     /**
      * return the new bar

@@ -13,6 +13,8 @@ public class Cat extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private HealthBar myHealthBar;
+    private int shootCooldown = 0;
+    private int shootDelay = 10;
     
     public Cat()
     {
@@ -28,7 +30,17 @@ public class Cat extends Actor
         if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
         if (Greenfoot.isKeyDown("left")) setLocation(getX() - 4, getY());
         if (Greenfoot.isKeyDown("up")) setLocation(getX(), getY() - 4);
-        if(Greenfoot.isKeyDown("down")) shoot();
+        
+        if(shootCooldown > 0)
+        {
+            shootCooldown--;
+        }
+        
+        if(Greenfoot.isKeyDown("down") && shootCooldown == 0 )
+        {
+            shoot();
+            shootCooldown = shootDelay;
+        }
     }
     
     public void shoot()

@@ -47,7 +47,7 @@ public class bullet extends Actor
             Dog target = (Dog)getOneIntersectingObject(Dog.class);
             if(target != null)
             {
-                target.takeDamage(10);
+                target.takeDamage(15);
                 getWorld().removeObject(this);
                 return;
             }
@@ -57,7 +57,7 @@ public class bullet extends Actor
             Cat target = (Cat)getOneIntersectingObject(Cat.class);
             if(target != null)
             {
-                target.takeDamage(10);
+                target.takeDamage(25);
                 getWorld().removeObject(this);
                 return;
             } 

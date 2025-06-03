@@ -9,8 +9,8 @@ public class MyWorld extends World {
         super(800, 400, 1);
         setBackground("resized_image.png");
         
-        healthBar1 = new HealthBar("HealthBar.png",100);
-        healthBar2 = new HealthBar("HealthBar.png",100);
+        healthBar1 = new HealthBar("HealthBar.png",1000, false);
+        healthBar2 = new HealthBar("HealthBar.png",1000, true);
         
         Cat cat = new Cat(healthBar2);
         Dog dog = new Dog(healthBar1);

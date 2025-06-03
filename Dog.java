@@ -13,8 +13,10 @@ public class Dog extends Actor
      * Act - do whatever the Dog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int speed = 2;
+    int speed = 4;
     private HealthBar myHealthBar;
+    private int shootCooldown = 0;
+    private int shootDelay = 15;
     
     public Dog(HealthBar opponent)
     {
@@ -33,7 +35,17 @@ public class Dog extends Actor
         if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
         if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
         if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY()); }
-        if (Greenfoot.isKeyDown("s")) { shoot(); }
+        
+        if(shootCooldown > 0)
+        {
+            shootCooldown--;
+        }
+        
+        if(Greenfoot.isKeyDown("s") && shootCooldown == 0 )
+        {
+            shoot();
+            shootCooldown = shootDelay;
+        }
         
         
     } 
