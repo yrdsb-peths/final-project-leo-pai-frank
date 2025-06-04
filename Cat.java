@@ -1,17 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Cat here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Cat extends Actor
 {
-    /**
-     * Act - do whatever the Cat wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     private HealthBar myHealthBar;// make the bar owner
     private int shootCooldown = 0;//time shoot
     private int shootDelay = 10;//time shoot
