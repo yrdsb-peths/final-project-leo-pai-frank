@@ -12,10 +12,7 @@ public class Cat extends Actor
      * Act - do whatever the Cat wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int ySpeed = 0; 
-    int gravity = 1; 
-    int jumpStrength = -15; 
-    boolean onGround = false;
+    
     private HealthBar myHealthBar;
     private int shootCooldown = 0;
     private int shootDelay = 10;
@@ -31,8 +28,8 @@ public class Cat extends Actor
     }
     public void act()
     {
-        checkKeys();
-        fall();
+        
+        
         if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
         if (Greenfoot.isKeyDown("left")) setLocation(getX() - 4, getY());
         if (Greenfoot.isKeyDown("up")) setLocation(getX(), getY() - 4);
@@ -47,16 +44,6 @@ public class Cat extends Actor
             shoot();
             shootCooldown = shootDelay;
         }
-    }
-    public void checkKeys() {
-        if (Greenfoot.isKeyDown("w") && onGround) {
-            ySpeed = jumpStrength;
-            onGround = false;
-        }
-    }
-    public void fall() {
-        setLocation(getX(), getY() + ySpeed);
-        ySpeed += gravity;
     }
     
 
