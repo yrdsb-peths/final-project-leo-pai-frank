@@ -46,9 +46,6 @@ public class Cat extends Actor
             shootCooldown = shootDelay;
         }
     }
-    
-
-
     public void shoot()
     {
         bullet bullet = new bullet("cat");
