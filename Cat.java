@@ -12,10 +12,7 @@ public class Cat extends Actor
      * Act - do whatever the Cat wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int ySpeed = 0; 
-    int gravity = 1; 
-    int jumpStrength = -15; 
-    boolean onGround = false;
+    
     private HealthBar myHealthBar;
     private int shootCooldown = 0;
     private int shootDelay = 10;
