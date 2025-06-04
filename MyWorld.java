@@ -21,6 +21,8 @@ public class MyWorld extends World {
         addObject(dog, 100, 200);
         addObject(cat, 700, 200);
         
+        Ground ground = new Ground();
+        addObject(ground, 380, 390);
     }
     
     public void gameOver()
