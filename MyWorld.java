@@ -22,4 +22,10 @@ public class MyWorld extends World {
         addObject(cat, 700, 200);
         
     }
+    
+    public void gameOver()
+    {
+        Label gameOverLabel = new Label("Game Over", 100);
+        addObject(gameOverLabel, 400, 200);
+    }
 }
