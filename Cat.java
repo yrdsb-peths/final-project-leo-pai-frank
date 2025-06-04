@@ -26,6 +26,7 @@ public class Cat extends Actor
     {
         this.myHealthBar = opponent;
     }
+    
     public void act()
     {
         
