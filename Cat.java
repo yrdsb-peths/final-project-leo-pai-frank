@@ -21,7 +21,7 @@ public class Cat extends Actor
         {
             setLocation(getX(), getY());
         }
-        else if(getWorld() instanceof MyWorld)
+        else if(getWorld() instanceof MyWorld || getWorld() instanceof SingleWorld)
         {
             if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
             if (Greenfoot.isKeyDown("left")) setLocation(getX() - 4, getY());

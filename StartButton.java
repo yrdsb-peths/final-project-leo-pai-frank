@@ -42,6 +42,10 @@ public class StartButton extends Actor
             {
                 Greenfoot.setWorld(new SpaceBattle());
             }
+            else if(action.equals("Single"))
+            {
+                Greenfoot.setWorld(new SingleWorld());
+            }
             else if(action.equals("exit"))
             {
                 Greenfoot.setWorld(new TitleScreen());

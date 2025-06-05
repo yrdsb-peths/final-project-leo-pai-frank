@@ -93,6 +93,17 @@ public class HealthBar extends Actor
             }
             updateBar();
         }
+        if(getWorld() instanceof SingleWorld)
+        {
+            currentHealth -= amount;//lose the bar
+            SingleWorld world = (SingleWorld) getWorld();
+            if(currentHealth < 0)
+            {
+                currentHealth = 0;// make sure the bar can't less then 0
+                world.gameOver();
+            }
+            updateBar();
+        }
     }
     /**
      * return the new bar

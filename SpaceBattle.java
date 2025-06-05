@@ -14,7 +14,7 @@ public class SpaceBattle extends World
     
     public SpaceBattle() {
         super(800, 400, 1);
-        setBackground("SpaceWorld.png");
+        setBackground("World/SpaceWorld.png");
         
         healthBar1 = new HealthBar("HealthBar.png",1000, false);
         healthBar2 = new HealthBar("HealthBar.png",1000, true);

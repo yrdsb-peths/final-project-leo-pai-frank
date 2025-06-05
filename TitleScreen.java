@@ -15,7 +15,7 @@ public class TitleScreen extends World
     public TitleScreen()
     {    
         super(800, 400, 1);
-        setBackground("Start.png");
+        setBackground("World/Start.png");
         Label titleLabel = new Label("Two Guys", 80);
         addObject(titleLabel,getWidth()/2,getHeight()/7);
         prepare();

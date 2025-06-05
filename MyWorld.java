@@ -9,7 +9,7 @@ public class MyWorld extends World {
     
     public MyWorld() {
         super(800, 400, 1);
-        setBackground("resized_image.png");
+        setBackground("World/resized_image.png");
         
         healthBar1 = new HealthBar("HealthBar.png",1000, false);
         healthBar2 = new HealthBar("HealthBar.png",1000, true);

@@ -34,7 +34,7 @@ public class Dog extends Actor
         {
             setLocation(getX(), getY());
         }
-        else if(getWorld() instanceof MyWorld)
+        else if(getWorld() instanceof MyWorld || getWorld() instanceof SingleWorld)
         {
             if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
             if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
@@ -59,7 +59,7 @@ public class Dog extends Actor
             if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed);}
             if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY());}
             if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY());}
-            if (Greenfoot.isKeyDown("s")) { setLocation(getX() + speed, getY());}
+            if (Greenfoot.isKeyDown("s")) { setLocation(getX(), getY() + speed);}
             // the move control set
             
             if(shootCooldown > 0)
