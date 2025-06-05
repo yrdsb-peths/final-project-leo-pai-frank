@@ -14,7 +14,7 @@ public class SingleWorld extends World
     
     public SingleWorld() {
         super(800, 400, 1);
-        setBackground("SpaceWorld.png");
+        
         
         healthBar1 = new HealthBar("HealthBar.png",1000, false);
         healthBar2 = new HealthBar("HealthBar.png",1000, true);
