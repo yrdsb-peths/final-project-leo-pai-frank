@@ -30,24 +30,53 @@ public class Dog extends Actor
     
     public void act()
     {
-        if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
-        if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
-        if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY()); }
-        // the move control set
-        
-        if(shootCooldown > 0)
+        if (getWorld() instanceof TitleScreen)
         {
-            shootCooldown--;
-            //counter for shoot time
+            setLocation(getX(), getY());
         }
-        
-        if(Greenfoot.isKeyDown("s") && shootCooldown == 0 )
+        else if(getWorld() instanceof MyWorld)
         {
-            shoot();
-            shootCooldown = shootDelay;
-            // the shoot control button
+            if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
+            if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
+            if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY()); }
+            // the move control set
+            
+            if(shootCooldown > 0)
+            {
+                shootCooldown--;
+                //counter for shoot time
+            }
+            
+            if(Greenfoot.isKeyDown("s") && shootCooldown == 0 )
+            {
+                shoot();
+                shootCooldown = shootDelay;
+                // the shoot control button
+            }
         }
-    } 
+        else if(getWorld() instanceof SpaceBattle)
+        {
+            if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed);}
+            if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY());}
+            if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY());}
+            if (Greenfoot.isKeyDown("s")) { setLocation(getX() + speed, getY());}
+            // the move control set
+            
+            if(shootCooldown > 0)
+            {
+                shootCooldown--;
+                //counter for shoot time
+            }
+            
+            if(Greenfoot.isKeyDown("f") && shootCooldown == 0 )
+            {
+                shoot();
+                shootCooldown = shootDelay;
+                // the shoot control button
+            }
+        }
+    }
+    
     public void shoot()
     {
         bullet bullet = new bullet("dog");

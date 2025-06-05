@@ -14,25 +14,34 @@ public class TitleScreen extends World
      */
     public TitleScreen()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1);
-        Label titleLabel = new Label("Two Guys", 60);
-        addObject(titleLabel,getWidth()/2,getHeight()/4);
+        super(800, 400, 1);
+        setBackground("Start.png");
+        Label titleLabel = new Label("Two Guys", 80);
+        addObject(titleLabel,getWidth()/2,getHeight()/7);
         prepare();
-    }
-    
-    public void act()
-    {
-        if(Greenfoot.isKeyDown("Space"))
-        {
-            MyWorld gameWorld = new MyWorld();
-            Greenfoot.setWorld(gameWorld);
-        }
     }
     
     private void prepare()
     {
         Dog dog = new Dog();
-        addObject(dog,422,133);
+        GreenfootImage dogImage = dog.getImage();
+        dogImage.scale(dogImage.getWidth() * 3, dogImage.getHeight() * 3);
+        dog.setImage(dogImage);
+        addObject(dog, 150, 200);
+        
+        Cat cat = new Cat();
+        GreenfootImage catImage = cat.getImage();
+        catImage.scale(catImage.getWidth() * 3, catImage.getHeight() * 3);
+        cat.setImage(catImage);
+        addObject(cat, 650, 200);
+        
+        StartButton battleGame = new StartButton("Battle Mode", "Battle");
+        addObject(battleGame, 600, 330);
+        
+        StartButton singleGame = new StartButton("Single Mode", "Single");
+        addObject(singleGame, 200, 330);
+        
+        StartButton spaceBattle = new StartButton("Space Battle", "Space");
+        addObject(spaceBattle, getWidth()/2, 375);
     }
 }

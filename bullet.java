@@ -12,7 +12,7 @@ public class bullet extends Actor
      * Act - do whatever the bullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int speed = 3;//set the speed for bullet moving
+    private int speed = 0;//set the speed for bullet moving
     private String owner;//set the owner bullet
     
     public bullet(String owner)
@@ -22,11 +22,11 @@ public class bullet extends Actor
         if(owner.equals("cat"))
         {
             image.mirrorHorizontally();
-            speed = -3;
+            speed = -8;
         }
         else
         {
-            speed = 3;
+            speed = 8;
         }
         /**
          *  the bullet move trajectory

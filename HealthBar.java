@@ -71,14 +71,28 @@ public class HealthBar extends Actor
      */
     public void loseHealth(int amount)
     {
-        currentHealth -= amount;//lose the bar
-        MyWorld world = (MyWorld) getWorld();
-        if(currentHealth < 0)
+        if(getWorld() instanceof MyWorld)
         {
-            currentHealth = 0;// make sure the bar can't less then 0
-            world.gameOver();
+            currentHealth -= amount;//lose the bar
+            MyWorld world = (MyWorld) getWorld();
+            if(currentHealth < 0)
+            {
+                currentHealth = 0;// make sure the bar can't less then 0
+                world.gameOver();
+            }
+            updateBar();
         }
-        updateBar();
+        else if(getWorld() instanceof SpaceBattle)
+        {
+            currentHealth -= amount;//lose the bar
+            SpaceBattle world = (SpaceBattle) getWorld();
+            if(currentHealth < 0)
+            {
+                currentHealth = 0;// make sure the bar can't less then 0
+                world.gameOver();
+            }
+            updateBar();
+        }
     }
     /**
      * return the new bar

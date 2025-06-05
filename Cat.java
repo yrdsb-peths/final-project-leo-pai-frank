@@ -17,22 +17,50 @@ public class Cat extends Actor
     }
     public void act()
     {
-        if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
-        if (Greenfoot.isKeyDown("left")) setLocation(getX() - 4, getY());
-        if (Greenfoot.isKeyDown("up")) setLocation(getX(), getY() - 4);
-        // the move control set
-        
-        if(shootCooldown > 0)
+        if (getWorld() instanceof TitleScreen)
         {
-            shootCooldown--;
-            //counter for shoot time
+            setLocation(getX(), getY());
         }
-        
-        if(Greenfoot.isKeyDown("down") && shootCooldown == 0 )
+        else if(getWorld() instanceof MyWorld)
         {
-            shoot();
-            shootCooldown = shootDelay;
-            // the shoot control button
+            if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
+            if (Greenfoot.isKeyDown("left")) setLocation(getX() - 4, getY());
+            if (Greenfoot.isKeyDown("up")) setLocation(getX(), getY() - 4);
+            // the move control set
+            
+            if(shootCooldown > 0)
+            {
+                shootCooldown--;
+                //counter for shoot time
+            }
+            
+            if(Greenfoot.isKeyDown("down") && shootCooldown == 0 )
+            {
+                shoot();
+                shootCooldown = shootDelay;
+                // the shoot control button
+            }
+        }
+        else if(getWorld() instanceof SpaceBattle)
+        {
+            if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
+            if (Greenfoot.isKeyDown("left")) setLocation(getX() - 4, getY());
+            if (Greenfoot.isKeyDown("up")) setLocation(getX(), getY() - 4);
+            if (Greenfoot.isKeyDown("down")) setLocation(getX(), getY() + 4);
+            // the move control set
+            
+            if(shootCooldown > 0)
+            {
+                shootCooldown--;
+                //counter for shoot time
+            }
+            
+            if(Greenfoot.isKeyDown("shift") && shootCooldown == 0 )
+            {
+                shoot();
+                shootCooldown = shootDelay;
+                // the shoot control button
+            }
         }
     }
     

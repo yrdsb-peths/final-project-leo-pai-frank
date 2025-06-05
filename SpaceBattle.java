@@ -1,15 +1,20 @@
-import greenfoot.*;
-/*
- * Frank
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class SpaceBattle here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class MyWorld extends World {
+public class SpaceBattle extends World
+{
     private HealthBar healthBar1;
     private HealthBar healthBar2;
     private boolean isGameOver = false;
     
-    public MyWorld() {
+    public SpaceBattle() {
         super(800, 400, 1);
-        setBackground("resized_image.png");
+        setBackground("SpaceWorld.png");
         
         healthBar1 = new HealthBar("HealthBar.png",1000, false);
         healthBar2 = new HealthBar("HealthBar.png",1000, true);
@@ -22,9 +27,6 @@ public class MyWorld extends World {
         
         addObject(dog, 100, 200);
         addObject(cat, 700, 200);
-        
-        Ground ground = new Ground();
-        addObject(ground, 380, 390);
         
         StartButton exit = new StartButton("Exit", "exit");
         addObject(exit, 750, 380);
@@ -39,7 +41,7 @@ public class MyWorld extends World {
         addObject(reStart, 400, 250);
         if(isGameOver && Greenfoot.isKeyDown("space"))
         {
-            Greenfoot.setWorld(new MyWorld());
+            Greenfoot.setWorld(new SpaceBattle());
         }
     }
 }
