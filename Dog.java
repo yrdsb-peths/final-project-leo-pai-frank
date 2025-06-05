@@ -13,6 +13,11 @@ public class Dog extends Actor
      * Act - do whatever the Dog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    int ySpeed = 0; 
+    int gravity = 1; 
+    int jumpStrength = -15; 
+    boolean onGround = false; 
+
     int speed = 4;
     private HealthBar myHealthBar;// make the bar owner
     private int shootCooldown = 0;//time shoot
@@ -36,10 +41,18 @@ public class Dog extends Actor
         }
         else if(getWorld() instanceof MyWorld)
         {
+            fall();
             if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
             if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
             if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY()); }
-            // the move control set
+            
+            if (Greenfoot.isKeyDown("w") && onGround) 
+            {
+                ySpeed = jumpStrength;
+                onGround = false;
+            }
+            
+            checkGround();
             
             if(shootCooldown > 0)
             {
@@ -76,7 +89,26 @@ public class Dog extends Actor
             }
         }
     }
-    
+    public void fall() {
+        setLocation(getX(), getY() + ySpeed);
+        ySpeed += gravity;
+    }
+    public void checkGround() {
+        if (isTouching(Ground.class)) 
+        {
+            ySpeed = 0;
+            onGround = true;
+
+        
+            while (isTouching(Ground.class)) {
+                setLocation(getX(), getY() - 1);
+            }
+        } 
+        else 
+        {
+            onGround = false;
+        }
+    }
     public void shoot()
     {
         bullet bullet = new bullet("dog");
