@@ -26,6 +26,7 @@ public class Dog extends Actor
     public Dog(HealthBar opponent)
     {
         this.myHealthBar = opponent; // connect the bar with Dog
+        setImage("dog1.png"); // set Dog image
     }
     
     public Dog()

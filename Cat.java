@@ -18,6 +18,7 @@ public class Cat extends Actor
     public Cat(HealthBar opponent)
     {
         this.myHealthBar = opponent;// connect the bar with Cat
+        setImage("cat2.png"); //set Image
     }
     public void act()
     {
