@@ -113,14 +113,4 @@ public class HealthBar extends Actor
     {
         return currentHealth;
     }
-    
-    public boolean isDead()
-    {
-        return currentHealth <= 0;
-    }
-    
-    private void updateBar()
-    {
-        
-    }
 }

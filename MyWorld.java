@@ -43,6 +43,9 @@ public class MyWorld extends World {
         if (isGameOver) return;
         isGameOver = true;
         
+        GreenfootImage winImg = new GreenfootImage(winnerImage);
+        getBackground().drawImage(winImg, getWidth()/2 - winImg.getWidth()/2, getHeight()/2 - winImg.getHeight()/2);
+        
         Label gameOverLabel = new Label("Game Over", 100);
         addObject(gameOverLabel, 400, 100);
         
@@ -50,10 +53,5 @@ public class MyWorld extends World {
         addObject(reStart, 400, 250);
     }
     
-    public void showVictory(String winnerImage)
-    {
-        GreenfootImage image = new GreenfootImage(winnerImage);
-        getBackground().drawImage(image, getWidth()/2 - image.getWidth()/2, getHeight()/2 - image.getHeight()/2);
-        Greenfoot.stop();  
-    }
+    
 }

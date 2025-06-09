@@ -88,6 +88,10 @@ public class Dog extends Actor
                 // the shoot control button
             }
         }
+        if (myHealthBar.getHealth() <= 0)
+        {
+            ((MyWorld)getWorld()).gameOver("catwinner.png");  
+        }
     }
     public void fall() {
         setLocation(getX(), getY() + ySpeed);

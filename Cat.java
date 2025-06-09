@@ -73,10 +73,10 @@ public class Cat extends Actor
                 // the shoot control button
             }
         }
-        if (myHealthBar.isDead()) 
-        {
-            ((MyWorld)getWorld()).showVictory("dog_win.png");
+        if (myHealthBar.getHealth() <= 0) {
+            ((MyWorld)getWorld()).gameOver("dogwinner.png");  // 狗赢了
         }
+
     }
     public void fall() {
         setLocation(getX(), getY() + ySpeed);
@@ -97,7 +97,8 @@ public class Cat extends Actor
             onGround = true;
 
         
-            while (isTouching(Ground.class)) {
+            while (isTouching(Ground.class))
+            {
                 setLocation(getX(), getY() - 1);
             }
         } 
@@ -110,11 +111,5 @@ public class Cat extends Actor
     {
         myHealthBar.loseHealth(amount);
         //the bar lose
-    }
-    
-    public void showGameOver(String winnerImage) 
-    {
-        MyWorld world = (MyWorld)getWorld();
-        world.showVictory(winnerImage);
     }
 }
