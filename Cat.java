@@ -73,8 +73,9 @@ public class Cat extends Actor
                 // the shoot control button
             }
         }
-        if (myHealthBar.getHealth() <= 0) {
-            ((MyWorld)getWorld()).gameOver("dogwinner.png");  // 狗赢了
+        if (myHealthBar.getHealth() <= 0) 
+        {
+            ((MyWorld)getWorld()).gameOver("dogwinner.png");
         }
 
     }
