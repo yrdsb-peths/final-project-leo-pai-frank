@@ -38,7 +38,7 @@ public class MyWorld extends World {
         }
     }
     
-    public void gameOver()
+    public void gameOver(String winnerImage)
     {
         if (isGameOver) return;
         isGameOver = true;

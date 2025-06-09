@@ -78,7 +78,6 @@ public class HealthBar extends Actor
             if(currentHealth < 0)
             {
                 currentHealth = 0;// make sure the bar can't less then 0
-                world.gameOver();
                 world.removeObject(this);
             }
             updateBar();
