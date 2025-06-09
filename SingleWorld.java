@@ -11,41 +11,75 @@ public class SingleWorld extends World
     private HealthBar healthBar1;
     private HealthBar healthBar2;
     private boolean isGameOver = false;
+    private String chosenCharacter;
+    private Actor player;
+    private int spawnTimer = 0;
     
-    public SingleWorld() 
+    public SingleWorld(String choice) 
     {
         super(800, 400, 1);
         setBackground("World/SingleWorld.png");
+        this.chosenCharacter = choice;
         
-        healthBar1 = new HealthBar("HealthBar.png",1000, false);
-        healthBar2 = new HealthBar("HealthBar.png",1000, true);
-        
-        Cat cat = new Cat(healthBar2);
-        Dog dog = new Dog(healthBar1);
-        
-        addObject(healthBar1, 95, 20);
-        addObject(healthBar2, 705, 20);
-        
-        addObject(dog, 100, 200);
-        addObject(cat, 700, 200);
+        if (choice.equals("Cat")) {
+            healthBar2 = new HealthBar("HealthBar.png",1000, true);
+            player= new Cat(healthBar2);
+            addObject(player, 700, 300);
+            addObject(healthBar2, 705, 20);
+        } else {
+            healthBar1 = new HealthBar("HealthBar.png",1000, false);
+            player = new Dog(healthBar1);
+            addObject(player, 100, 300);
+            addObject(healthBar1, 95, 20);
+        }
         
         Ground ground = new Ground();
         addObject(ground, 380, 390);
         
-        StartButton exit = new StartButton("Exit", "Exit");
+        StartButton exit = new StartButton("Exit", "exit");
         addObject(exit, 750, 380);
+    }
+    
+    public void act()
+    {
+        spawnTimer ++;
+        if(spawnTimer >= 250)
+        {
+            spawnEnemy();
+            spawnTimer = 0;
+        }
+        
+        if(isGameOver && Greenfoot.isKeyDown("space"))
+        {
+            Greenfoot.setWorld(new SingleWorld(chosenCharacter));
+        }
+    }
+    
+    private void spawnEnemy() 
+    {
+        int y = 150 + Greenfoot.getRandomNumber(150);
+        
+        if (chosenCharacter.equals("Cat")) 
+        {
+            addObject(new Robot("right"), 20, y);
+        } else {
+            addObject(new Robot("left"), 780, y);
+        }
+    }
+    
+    public Actor getPlayer()
+    {
+        return player;
     }
     
     public void gameOver()
     {
+        if (isGameOver) return;
+        isGameOver = true;
         Label gameOverLabel = new Label("Game Over", 100);
         addObject(gameOverLabel, 400, 100);
         
         Label reStart = new Label("Press 'space'\n restart same mode", 80);
         addObject(reStart, 400, 250);
-        if(isGameOver && Greenfoot.isKeyDown("space"))
-        {
-            Greenfoot.setWorld(new SingleWorld());
-        }
     }
 }

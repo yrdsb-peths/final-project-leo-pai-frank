@@ -26,6 +26,7 @@ public class Dog extends Actor
     public Dog(HealthBar opponent)
     {
         this.myHealthBar = opponent; // connect the bar with Dog
+        setImage("dog1.png"); // set Dog image
     }
     
     public Dog()
@@ -42,7 +43,6 @@ public class Dog extends Actor
         else if(getWorld() instanceof MyWorld || getWorld() instanceof SingleWorld)
         {
             fall();
-            if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed); }
             if (Greenfoot.isKeyDown("a")) { setLocation(getX() - speed, getY()); }
             if (Greenfoot.isKeyDown("d")) { setLocation(getX() + speed, getY()); }
             
@@ -111,7 +111,7 @@ public class Dog extends Actor
     }
     public void shoot()
     {
-        bullet bullet = new bullet("dog");
+        bullet bullet = new bullet("dog", 5);
         getWorld().addObject(bullet, getX() + 30, getY());
         // the bullet shoot way with cat, from the dog X and Y
     }

@@ -11,11 +11,20 @@ public class StartButton extends Actor
     private String label;
     private String action;
     private boolean isHovered = false;
+    private String choice = "";
     
     public StartButton(String label, String action)
     {
         this.label = label;
         this.action = action;
+        updateImage(Color.WHITE);
+    }
+    
+    public StartButton(String label, String action, String choice) 
+    {
+        this.label = label;
+        this.action = action;
+        this.choice = choice;
         updateImage(Color.WHITE);
     }
     
@@ -44,7 +53,7 @@ public class StartButton extends Actor
             }
             else if(action.equals("Single"))
             {
-                Greenfoot.setWorld(new SingleWorld());
+                Greenfoot.setWorld(new SelectWorld());
             }
             else if(action.equals("exit"))
             {

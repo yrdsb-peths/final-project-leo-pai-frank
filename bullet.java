@@ -17,20 +17,42 @@ public class bullet extends Actor
     
     public bullet(String owner)
     {
-        this.owner = owner;//owner bullet
+        this.owner = owner;//owner bulle
         GreenfootImage image = new GreenfootImage("bullet.png");//set image for bullet
-        if(owner.equals("cat"))
+        if (owner.equals("cat")) 
         {
             image.mirrorHorizontally();
             speed = -8;
-        }
-        else
+        } 
+        else if (owner.equals("dog")) 
         {
             speed = 8;
+        } 
+        else if (owner.equals("left")) 
+        {
+            image.mirrorHorizontally();
+            speed = -5;
+        } 
+        else if (owner.equals("right")) 
+        {
+            speed = 5;
         }
         /**
          *  the bullet move trajectory
          */
+        setImage(image);
+    }
+    
+    public bullet(String owner, int speed)
+    {
+        this.owner = owner;
+        this.speed = speed;
+
+        GreenfootImage image = new GreenfootImage("bullet.png");
+        if (speed < 0) {
+            image.mirrorHorizontally();
+        }
+
         setImage(image);
     }
     
@@ -53,7 +75,14 @@ public class bullet extends Actor
                 getWorld().removeObject(this);
                 return;
             }
-            //
+            
+            Robot robot = (Robot)getOneIntersectingObject(Robot.class);
+            if(robot != null)
+            {
+                robot.takeDamage(1);
+                getWorld().removeObject(this);
+                return;
+            }
         }
         else if(owner.equals("dog"))
         {
@@ -63,7 +92,33 @@ public class bullet extends Actor
                 target.takeDamage(25);
                 getWorld().removeObject(this);
                 return;
-            } 
+            }
+            
+            Robot robot = (Robot)getOneIntersectingObject(Robot.class);
+            if(robot != null)
+            {
+                robot.takeDamage(1);
+                getWorld().removeObject(this);
+                return;
+            }
+        }
+        else if(owner.equals("robot"))
+        {
+            if (getWorld() instanceof SingleWorld) {
+                SingleWorld sw = (SingleWorld)getWorld();
+                Actor player = sw.getPlayer();
+
+                if (player != null && intersects(player))
+                {
+                    if (player instanceof Cat) {
+                        ((Cat)player).takeDamage(30);
+                    } else if (player instanceof Dog) {
+                        ((Dog)player).takeDamage(30);
+                    }
+
+                    getWorld().removeObject(this);
+                }
+            }
         }
     }
 }
