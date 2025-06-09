@@ -22,7 +22,7 @@ public class HealthBar extends Actor
     private int barWidth;
     private int barHeight;
     private boolean isR = false;
-    
+
     public HealthBar(String imageName, int maxHealth, boolean isR)
     {
         this.maxHealth = maxHealth;
@@ -112,5 +112,15 @@ public class HealthBar extends Actor
     public int getHealth()
     {
         return currentHealth;
+    }
+    
+    public boolean isDead()
+    {
+        return currentHealth <= 0;
+    }
+    
+    private void updateBar()
+    {
+        
     }
 }

@@ -42,4 +42,11 @@ public class MyWorld extends World {
             Greenfoot.setWorld(new MyWorld());
         }
     }
+    
+    public void showVictory(String winnerImage)
+    {
+        GreenfootImage image = new GreenfootImage(winnerImage);
+        getBackground().drawImage(image, getWidth()/2 - image.getWidth()/2, getHeight()/2 - image.getHeight()/2);
+        Greenfoot.stop();  
+    }
 }
