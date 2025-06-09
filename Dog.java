@@ -30,7 +30,7 @@ public class Dog extends Actor
     
     public Dog()
     {
-        setImage("dog1.png"); // set Dog image
+        setImage("dog1.png"); // set Dog image for title screen
     }
     
     public void act()
