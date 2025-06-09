@@ -17,7 +17,6 @@ public class Dog extends Actor
     int gravity = 1; 
     int jumpStrength = -15; 
     boolean onGround = false; 
-
     int speed = 4;
     private HealthBar myHealthBar;// make the bar owner
     private int shootCooldown = 0;//time shoot
@@ -126,5 +125,4 @@ public class Dog extends Actor
         myHealthBar.loseHealth(amount);
         //the bar lose
     }
-    
 }
