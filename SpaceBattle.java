@@ -32,16 +32,22 @@ public class SpaceBattle extends World
         addObject(exit, 750, 380);
     }
     
+    public void act() 
+    {
+        if (isGameOver && Greenfoot.isKeyDown("space")) 
+        {
+            Greenfoot.setWorld(new SpaceBattle());
+        }
+    }
+    
     public void gameOver()
     {
+        if (isGameOver) return;
+        isGameOver = true;
         Label gameOverLabel = new Label("Game Over", 100);
         addObject(gameOverLabel, 400, 100);
         
         Label reStart = new Label("Press 'space'\n restart same mode", 80);
         addObject(reStart, 400, 250);
-        if(isGameOver && Greenfoot.isKeyDown("space"))
-        {
-            Greenfoot.setWorld(new SpaceBattle());
-        }
     }
 }

@@ -81,7 +81,7 @@ public class Cat extends Actor
 
     public void shoot()
     {
-        bullet bullet = new bullet("cat");
+        bullet bullet = new bullet("cat", -5);
         getWorld().addObject(bullet, getX()-30, getY());
         // the bullet shoot way with cat, from the cat X and Y
     }
