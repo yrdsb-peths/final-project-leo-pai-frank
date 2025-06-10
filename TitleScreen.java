@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TitleScreen here.
+ * This is the title screen of the game
  * 
  * Pai, Leo 
  * 2025.05.28
+ * Pai Leo Frank
  */
 public class TitleScreen extends World
 {
