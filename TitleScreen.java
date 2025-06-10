@@ -8,10 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TitleScreen extends World
 {
-    /**
-     * Constructor for objects of class TitleScreen.
-     * 
-     */
+    private GreenfootSound bgMusic = new GreenfootSound("title.mp3");
+
     public TitleScreen()
     {    
         super(800, 400, 1);
@@ -21,10 +19,24 @@ public class TitleScreen extends World
         prepare();
     }
     
+    public void stopped() {
+        bgMusic.pause();
+    }
+
+     public void started() {
+        bgMusic.playLoop();
+    }
+    
     private void prepare()
     {
         HealthBar dummyBar = new HealthBar("HealthBar.png", 1000, false);
         Dog dog = new Dog(dummyBar);
+        
+        bgMusic.setVolume(60);
+        bgMusic.playLoop();
+        
+        MusicButton toggle = new MusicButton(bgMusic);
+        addObject(toggle, 750, 30);
         
         GreenfootImage dogImage = dog.getImage();
         dogImage.scale(dogImage.getWidth() * 3, dogImage.getHeight() * 3);
