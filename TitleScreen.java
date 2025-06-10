@@ -15,6 +15,7 @@ public class TitleScreen extends World
      */
     public TitleScreen()
     {    
+        // Create a new world with 800x400 cells with a cell size of 1x1 pixels.
         super(800, 400, 1);
         setBackground("World/Start.png");
         Label titleLabel = new Label("Two Guys", 80);
@@ -22,8 +23,14 @@ public class TitleScreen extends World
         prepare();
     }
     
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
     private void prepare()
     {
+        //To keep the game from stalling, the Health Bar is invoked to 
+        //keep the game balanced
         HealthBar dummyBar = new HealthBar("HealthBar.png", 1000, false);
         Dog dog = new Dog(dummyBar);
         
