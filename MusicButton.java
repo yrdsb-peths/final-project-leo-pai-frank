@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MusicButton here.
+ * control the music start and off
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Leo, pai
+ * 2025.06.10
  */
 public class MusicButton extends Actor
 {
@@ -14,7 +14,7 @@ public class MusicButton extends Actor
     
     public MusicButton(GreenfootSound music) {
         this.music = music;
-        setImage("music/Start.png");
+        setImage("music/Start.png"); // set music image
     }
     
     public void act()
@@ -27,10 +27,10 @@ public class MusicButton extends Actor
     private void toggleMusic() {
         if (isPlaying) {
             music.pause();
-            setImage("music/Off.png");
+            setImage("music/Off.png");// set music off image
         } else {
             music.playLoop();
-            setImage("music/Start.png");
+            setImage("music/Start.png");// set music start image
         }
         isPlaying = !isPlaying;
     }
