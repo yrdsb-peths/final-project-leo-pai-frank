@@ -17,14 +17,16 @@ public class TitleScreen extends World
         Label titleLabel = new Label("Two Guys", 80);
         addObject(titleLabel,getWidth()/2,getHeight()/7);
         prepare();
+        
+    }
+    
+    public void started() {
+        bgMusic.setVolume(60);
+        bgMusic.playLoop();
     }
     
     public void stopped() {
         bgMusic.pause();
-    }
-
-     public void started() {
-        bgMusic.playLoop();
     }
     
     private void prepare()
@@ -32,16 +34,13 @@ public class TitleScreen extends World
         HealthBar dummyBar = new HealthBar("HealthBar.png", 1000, false);
         Dog dog = new Dog(dummyBar);
         
-        bgMusic.setVolume(60);
-        bgMusic.playLoop();
-        
-        MusicButton toggle = new MusicButton(bgMusic);
-        addObject(toggle, 750, 30);
-        
         GreenfootImage dogImage = dog.getImage();
         dogImage.scale(dogImage.getWidth() * 3, dogImage.getHeight() * 3);
         dog.setImage(dogImage);
         addObject(dog, 150, 200);
+        
+        MusicButton toggle = new MusicButton(bgMusic);
+        addObject(toggle, 750, 30);
         
         HealthBar dummyBar1 = new HealthBar("HealthBar.png", 1000, false);
         Cat cat = new Cat(dummyBar1);
