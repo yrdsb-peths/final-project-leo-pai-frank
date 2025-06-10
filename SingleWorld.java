@@ -17,6 +17,8 @@ public class SingleWorld extends World
     private int killCount = 0;
     private ScoreLabel scoreLabel;
     private int spawnInterval = 250;
+    private GreenfootSound bgMusic = new GreenfootSound("solomusic.mp3");
+
     
     public SingleWorld(String choice) 
     {
@@ -44,6 +46,20 @@ public class SingleWorld extends World
         addObject(ground, 380, 390);
         StartButton exit = new StartButton("Exit", "exit");
         addObject(exit, 750, 380);
+        
+        bgMusic.setVolume(60);
+        bgMusic.playLoop();
+        
+        MusicButton toggle = new MusicButton(bgMusic);
+        addObject(toggle, 750, 30);
+    }
+    
+    public void stopped() {
+        bgMusic.pause();
+    }
+
+     public void started() {
+        bgMusic.playLoop();
     }
     
     public void addKill() 

@@ -15,7 +15,8 @@ public class SpaceBattle extends World
     private int timeLeft; // Remaining time in frames
     private final int totalTime = 60 * 5 * 60; // 5 minutes in frames
     private boolean timeUpHandled = false; // Flag to prevent repeated handling
-    
+    private GreenfootSound bgMusic = new GreenfootSound("spacemusic.mp3");
+
     public SpaceBattle() 
     {
         super(800, 400, 1);
@@ -38,6 +39,20 @@ public class SpaceBattle extends World
         addObject(exit, 750, 380);
         
         timeLeft = totalTime;
+        
+        bgMusic.setVolume(60);
+        bgMusic.playLoop();
+        
+        MusicButton toggle = new MusicButton(bgMusic);
+        addObject(toggle, 750, 30);
+    }
+    
+    public void stopped() {
+        bgMusic.pause();
+    }
+
+     public void started() {
+        bgMusic.playLoop();
     }
     
     public void act() 
