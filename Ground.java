@@ -1,9 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ground here.
+ * Ground - background floor image
  * 
- * @author (your name) 
+ * Frank
  * @version (a version number or a date)
  */
 public class Ground extends Actor
@@ -14,6 +14,7 @@ public class Ground extends Actor
      */
     public void act()
     {
+        // Set the image of ground
         setImage("Ground.png");
     }
 }

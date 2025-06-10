@@ -1,9 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class healthBar here.
+ * HealthBar - display and update player or enemy health
  * 
- * Leo
+ * Leo, Pai
  * 2025.05.22
  */
 public class HealthBar extends Actor
@@ -16,45 +16,47 @@ public class HealthBar extends Actor
     /**
      * private some variant to help healthBar to decline
      */
-    private GreenfootImage fullBarImage;//red part
-    private int maxHealth;
-    private int currentHealth;
-    private int barWidth;
-    private int barHeight;
-    private boolean isR = false;
+    private GreenfootImage fullBarImage;// red health bar image
+    private int maxHealth;// maximum health
+    private int currentHealth;// current health
+    private int barWidth;// bar width
+    private int barHeight;// bar height
+    private boolean isR = false;// if bar draws from right
 
     public HealthBar(String imageName, int maxHealth, boolean isR)
     {
+        //save the max bar and current bar
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.isR = isR;
-        //save the max bar and current bar
-        fullBarImage = new GreenfootImage("HealthBar.png");
-        barWidth = fullBarImage.getWidth();
-        barHeight = fullBarImage.getHeight();
-        //set image for bar
+        
+        fullBarImage = new GreenfootImage("HealthBar.png");// load red bar image
+        barWidth = fullBarImage.getWidth();// get width
+        barHeight = fullBarImage.getHeight();// get height
+        
+        // draw the initial full bar
         updateBar();
     }
     
     public void updateBar()
     {
+        // Create gray background
         GreenfootImage background = new GreenfootImage(barWidth, barHeight);
         background.setColor(Color.GRAY);
-        background.fillRect(0, 0, barWidth, barHeight);
-        //set new bar image 
+        background.fillRect(0, 0, barWidth, barHeight); 
         
-        int currentWidth = (int)((double)currentHealth / maxHealth * barWidth);
+        int currentWidth = (int)((double)currentHealth / maxHealth * barWidth);// calculate remaining width
         if(currentWidth <= 0)
         {
-            setImage(new GreenfootImage(barWidth, barHeight));
+            setImage(new GreenfootImage(barWidth, barHeight));// empty bar
             return;
-            //when the bar less then 0, copy the create image.
         }
         
+        // Copy red bar image
         GreenfootImage healthBar = new GreenfootImage(fullBarImage);
-        //copy the bar before, to make the bar be gray
         healthBar.scale(currentWidth, barHeight);
-        //deline the bar with width
+        
+        // Draw bar on background
         if(isR)
         {
             background.drawImage(healthBar, barWidth - currentWidth, 0);//draw in gray bar
@@ -64,13 +66,15 @@ public class HealthBar extends Actor
             background.drawImage(healthBar, 0, 0);//draw in gray bar
         }
         
-        setImage(background); //set bar background
+        setImage(background);// set final image
     }
     /**
      * when dog hurt will use loseHealth
      */
     public void loseHealth(int amount)
     {
+        // Reduce health and check if dead
+        
         if(getWorld() instanceof MyWorld)
         {
             currentHealth -= amount;//lose the bar
@@ -78,7 +82,7 @@ public class HealthBar extends Actor
             if(currentHealth < 0)
             {
                 currentHealth = 0;// make sure the bar can't less then 0
-                world.removeObject(this);
+                world.removeObject(this);// remove health bar if dead
             }
             updateBar();
         }
@@ -89,7 +93,7 @@ public class HealthBar extends Actor
             if(currentHealth < 0)
             {
                 currentHealth = 0;// make sure the bar can't less then 0
-                world.gameOver();
+                world.removeObject(this); // game over if dead
             }
             updateBar();
         }
@@ -100,7 +104,7 @@ public class HealthBar extends Actor
             if(currentHealth < 0)
             {
                 currentHealth = 0;// make sure the bar can't less then 0
-                world.gameOver();
+                world.gameOver();// game over if dead
             }
             updateBar();
         }
@@ -110,6 +114,6 @@ public class HealthBar extends Actor
      */
     public int getHealth()
     {
-        return currentHealth;
+        return currentHealth; // return current health
     }
 }

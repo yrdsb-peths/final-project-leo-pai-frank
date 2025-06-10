@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class TitleScreen here.
  * 
- * Pai 
- * @version (a version number or a date)
+ * Pai, Leo 
+ * 2025.05.28
  */
 public class TitleScreen extends World
 {
@@ -23,13 +23,16 @@ public class TitleScreen extends World
     
     private void prepare()
     {
-        Dog dog = new Dog();
+        HealthBar dummyBar = new HealthBar("HealthBar.png", 1000, false);
+        Dog dog = new Dog(dummyBar);
+        
         GreenfootImage dogImage = dog.getImage();
         dogImage.scale(dogImage.getWidth() * 3, dogImage.getHeight() * 3);
         dog.setImage(dogImage);
         addObject(dog, 150, 200);
         
-        Cat cat = new Cat();
+        HealthBar dummyBar1 = new HealthBar("HealthBar.png", 1000, false);
+        Cat cat = new Cat(dummyBar1);
         GreenfootImage catImage = cat.getImage();
         catImage.scale(catImage.getWidth() * 3, catImage.getHeight() * 3);
         cat.setImage(catImage);
@@ -43,5 +46,7 @@ public class TitleScreen extends World
         
         StartButton spaceBattle = new StartButton("Space Battle", "Space");
         addObject(spaceBattle, getWidth()/2, 375);
+        
+        addObject(new StartButton("How to Play", "howto"), 100, 20);
     }
 }

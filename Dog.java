@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Dog here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Frank, Leo
+ * 2025.05.28
  */
 
 public class Dog extends Actor
@@ -26,11 +26,6 @@ public class Dog extends Actor
     {
         this.myHealthBar = opponent; // connect the bar with Dog
         setImage("dog1.png"); // set Dog image
-    }
-    
-    public Dog()
-    {
-        setImage("dog1.png"); // set Dog image for title screen
     }
     
     public void act()
@@ -87,9 +82,17 @@ public class Dog extends Actor
                 // the shoot control button
             }
         }
-        if (myHealthBar.getHealth() <= 0)
+        if (myHealthBar.getHealth() <= 0) 
         {
-            ((MyWorld)getWorld()).gameOver("catwinner.png");  
+            World currentWorld = getWorld();
+            
+            if (currentWorld instanceof MyWorld) {
+                ((MyWorld)currentWorld).gameOver("catwinner.png");
+            }else if (currentWorld instanceof SpaceBattle) {
+                ((SpaceBattle)currentWorld).gameOver("catwinner.png");
+            } else if (currentWorld instanceof SingleWorld) {
+                ((SingleWorld)currentWorld).gameOver();
+            }
         }
     }
     public void fall() {

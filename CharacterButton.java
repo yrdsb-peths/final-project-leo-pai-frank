@@ -1,24 +1,26 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CharacterButton here.
+ * CharacterButton - button to choose a character
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Leo
+ * 2025.05.26
  */
 public class CharacterButton extends Actor
 {
-    private String choice;
+    private String choice;// character name
 
     public CharacterButton(String choice)
     {
         this.choice = choice;
+        // Create image with text "Choose <character>"
         GreenfootImage image = new GreenfootImage("Choose " + choice, 50, Color.WHITE, new Color(0, 0, 0, 150));
-        setImage(image);
+        setImage(image);// set the button image
     }
 
     public void act()
     {
+        // When clicked, go to new world with selected character
         if(Greenfoot.mouseClicked(this))
         {
             Greenfoot.setWorld(new SingleWorld(choice));

@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * create the bullet code to shoot
  * 
  * Leo
- * 2025, 06, 03
+ * 2025,05.29
  */
 public class bullet extends Actor
 {
@@ -21,7 +21,7 @@ public class bullet extends Actor
         GreenfootImage image = new GreenfootImage("bullet.png");//set image for bullet
         if (owner.equals("cat")) 
         {
-            image.mirrorHorizontally();
+            image.mirrorHorizontally();// Flip for left direction
             speed = -8;
         } 
         else if (owner.equals("dog")) 
@@ -40,7 +40,7 @@ public class bullet extends Actor
         /**
          *  the bullet move trajectory
          */
-        setImage(image);
+        setImage(image);// Set bullet image
     }
     
     public bullet(String owner, int speed)
@@ -50,7 +50,7 @@ public class bullet extends Actor
 
         GreenfootImage image = new GreenfootImage("bullet.png");
         if (speed < 0) {
-            image.mirrorHorizontally();
+            image.mirrorHorizontally();// Flip if shooting left
         }
 
         setImage(image);
@@ -62,10 +62,11 @@ public class bullet extends Actor
         
         if(isAtEdge())
         {
-            getWorld().removeObject(this);
+            getWorld().removeObject(this);// Remove bullet if at edge
             return;
         }
         
+        // Handle bullet collision
         if(owner.equals("cat"))
         {
             Dog target = (Dog)getOneIntersectingObject(Dog.class);

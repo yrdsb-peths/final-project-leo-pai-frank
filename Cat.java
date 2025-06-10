@@ -1,5 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * Write a description of class Dog here.
+ * 
+ * Leo, Frank 
+ * 2025.6.02
+ */
+
 public class Cat extends Actor
 {
     int ySpeed = 0; 
@@ -9,11 +16,6 @@ public class Cat extends Actor
     private HealthBar myHealthBar;// make the bar owner
     private int shootCooldown = 0;//time shoot
     private int shootDelay = 10;//time shoot
-    
-    public Cat()
-    {
-        setImage("cat2.png");//set Image
-    }
     
     public Cat(HealthBar opponent)
     {
@@ -75,10 +77,18 @@ public class Cat extends Actor
         }
         if (myHealthBar.getHealth() <= 0) 
         {
-            ((MyWorld)getWorld()).gameOver("dogwinner.png");
+            World currentWorld = getWorld();
+            
+            if (currentWorld instanceof MyWorld) {
+                ((MyWorld)currentWorld).gameOver("dogwinner.png");
+            }else if (currentWorld instanceof SpaceBattle) {
+                ((SpaceBattle)currentWorld).gameOver("dogwinner.png");
+            } else if (currentWorld instanceof SingleWorld) {
+                ((SingleWorld)currentWorld).gameOver();
+            }
         }
-
     }
+    
     public void fall() {
         setLocation(getX(), getY() + ySpeed);
         ySpeed += gravity;
