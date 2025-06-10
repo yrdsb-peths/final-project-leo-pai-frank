@@ -3,10 +3,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Dog here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (your name) frank leo pei
+ * @version (a version number or a date)05/11
  */
-
+//the dog should be stonger than cat also more slow than cat
 public class Dog extends Actor
 {
     /**
@@ -14,7 +14,7 @@ public class Dog extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int ySpeed = 0; 
-    int gravity = 1; 
+    int gravity = 1; //set the gravity 
     int jumpStrength = -15; 
     boolean onGround = false; 
     int speed = 4;
@@ -32,13 +32,14 @@ public class Dog extends Actor
     {
         setImage("dog1.png"); // set Dog image for title screen
     }
-    
+    //set the act mrthod
     public void act()
     {
         if (getWorld() instanceof TitleScreen)
         {
             setLocation(getX(), getY());
         }
+        //the action method when in the singlerworld
         else if(getWorld() instanceof MyWorld || getWorld() instanceof SingleWorld)
         {
             fall();
@@ -66,6 +67,7 @@ public class Dog extends Actor
                 // the shoot control button
             }
         }
+        //action in spacebattle
         else if(getWorld() instanceof SpaceBattle)
         {
             if (Greenfoot.isKeyDown("w")) { setLocation(getX(), getY() - speed);}
@@ -92,6 +94,7 @@ public class Dog extends Actor
             ((MyWorld)getWorld()).gameOver("catwinner.png");  
         }
     }
+    //the method when day are not on the ground
     public void fall() {
         setLocation(getX(), getY() + ySpeed);
         ySpeed += gravity;
@@ -112,6 +115,7 @@ public class Dog extends Actor
             onGround = false;
         }
     }
+    //the method that dog shoot
     public void shoot()
     {
         bullet bullet = new bullet("dog", 5);
