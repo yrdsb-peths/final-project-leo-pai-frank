@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * HealthBar - display and update player or enemy health
  * 
- * Leo, Pai
+ * Leo, Pai，Frank
  * 2025.05.22
  */
 public class HealthBar extends Actor

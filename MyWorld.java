@@ -105,6 +105,7 @@ public class MyWorld extends World {
         getBackground().drawImage(winImg, getWidth()/2 - winImg.getWidth()/2, getHeight()/2 - winImg.getHeight()/2);
         
         // Show "Game Over" and restart message
+        removeObjects(getObjects(null));
         Label gameOverLabel = new Label("Game Over", 100);
         addObject(gameOverLabel, 400, 100);
         Label reStart = new Label("Press 'space'\n restart same mode", 80);
