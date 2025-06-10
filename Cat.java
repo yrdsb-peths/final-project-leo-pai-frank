@@ -1,33 +1,33 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * Write a description of class Dog here.
+ * 
+ * Leo, Frank 
+ * 2025.6.02
+ */
+
 public class Cat extends Actor
 {
     int ySpeed = 0; 
-    int gravity = 1; //set the gravity
-    int jumpStrength = -15; //the strength
-    boolean onGround = false; //check the ground
+    int gravity = 1; 
+    int jumpStrength = -15; 
+    boolean onGround = false; 
     private HealthBar myHealthBar;// make the bar owner
     private int shootCooldown = 0;//time shoot
     private int shootDelay = 10;//time shoot
-    
-    public Cat()
-    {
-        setImage("cat2.png");//set Image
-    }
     
     public Cat(HealthBar opponent)
     {
         this.myHealthBar = opponent;// connect the bar with Cat
         setImage("cat2.png"); //set Image
     }
-    //the act method
     public void act()
     {
         if (getWorld() instanceof TitleScreen)
         {
             setLocation(getX(), getY());
         }
-        //move in singleworld
         else if(getWorld() instanceof MyWorld || getWorld() instanceof SingleWorld)
         {
             fall();
@@ -54,7 +54,6 @@ public class Cat extends Actor
                 // the shoot control button
             }
         }
-        //move in space battle
         else if(getWorld() instanceof SpaceBattle)
         {
             if (Greenfoot.isKeyDown("right")) setLocation(getX() + 4, getY());
@@ -78,11 +77,18 @@ public class Cat extends Actor
         }
         if (myHealthBar.getHealth() <= 0) 
         {
-            ((MyWorld)getWorld()).gameOver("dogwinner.png");
+            World currentWorld = getWorld();
+            
+            if (currentWorld instanceof MyWorld) {
+                ((MyWorld)currentWorld).gameOver("dogwinner.png");
+            }else if (currentWorld instanceof SpaceBattle) {
+                ((SpaceBattle)currentWorld).gameOver("dogwinner.png");
+            } else if (currentWorld instanceof SingleWorld) {
+                ((SingleWorld)currentWorld).gameOver();
+            }
         }
-
     }
-    //method that ifd the cat no on the groung ,it will fall
+    
     public void fall() {
         setLocation(getX(), getY() + ySpeed);
         ySpeed += gravity;
@@ -94,7 +100,7 @@ public class Cat extends Actor
         getWorld().addObject(bullet, getX()-30, getY());
         // the bullet shoot way with cat, from the cat X and Y
     }
-    //check if on the groung to avoid some loops that make cat stick into the ground
+    
     public void checkGround() {
         if (isTouching(Ground.class)) 
         {
@@ -112,7 +118,6 @@ public class Cat extends Actor
             onGround = false;
         }
     }
-    //the method that when the cat be attacked
     public void takeDamage(int amount)
     {
         myHealthBar.loseHealth(amount);
