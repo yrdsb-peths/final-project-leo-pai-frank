@@ -1,21 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * This is the title screen of the game
+ * Write a description of class TitleScreen here.
  * 
  * Pai, Leo 
  * 2025.05.28
- * Pai Leo Frank
  */
 public class TitleScreen extends World
 {
-    /**
-     * Constructor for objects of class TitleScreen.
-     * 
-     */
+    private GreenfootSound bgMusic = new GreenfootSound("title.mp3");
+
     public TitleScreen()
     {    
-        // Create a new world with 800x400 cells with a cell size of 1x1 pixels.
         super(800, 400, 1);
         setBackground("World/Start.png");
         Label titleLabel = new Label("Two Guys", 80);
@@ -23,16 +19,24 @@ public class TitleScreen extends World
         prepare();
     }
     
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
+    public void stopped() {
+        bgMusic.pause();
+    }
+
+     public void started() {
+        bgMusic.playLoop();
+    }
+    
     private void prepare()
     {
-        //To keep the game from stalling, the Health Bar is invoked to 
-        //keep the game balanced
         HealthBar dummyBar = new HealthBar("HealthBar.png", 1000, false);
         Dog dog = new Dog(dummyBar);
+        
+        bgMusic.setVolume(60);
+        bgMusic.playLoop();
+        
+        MusicButton toggle = new MusicButton(bgMusic);
+        addObject(toggle, 750, 30);
         
         GreenfootImage dogImage = dog.getImage();
         dogImage.scale(dogImage.getWidth() * 3, dogImage.getHeight() * 3);
