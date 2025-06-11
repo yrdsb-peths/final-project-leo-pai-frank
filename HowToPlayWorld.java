@@ -12,7 +12,7 @@ public class HowToPlayWorld extends World
     private int currentPage = 0;// Current page of instructions
     private static final int LINES_PER_PAGE = 15;// Number of lines per page
     private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/howToPlay.wav");//music set
-
+    private boolean musicStarted = false;
         
     // All instruction lines to be displayed (split into pages)
     private String[] lines =
@@ -102,9 +102,10 @@ public class HowToPlayWorld extends World
     public void act() 
     {
         // Start music if not playing
-        if (!bgMusic.isPlaying()) {
+        if (!musicStarted && !bgMusic.isPlaying()) {
             bgMusic.setVolume(60);
             bgMusic.playLoop();
+            musicStarted = true;
         }
         
         if(Greenfoot.mouseClicked(getObjects(StartButton.class).get(1))) { 

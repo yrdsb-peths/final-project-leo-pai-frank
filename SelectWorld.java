@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class SelectWorld extends World
 {
     private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/select1.wav");
-
+    private boolean musicStarted = false;
+    
     public SelectWorld()
     {    
         super(800, 400, 1);// Set world size
@@ -32,9 +33,10 @@ public class SelectWorld extends World
     public void act()
     {
         // Start music if not playing
-        if (!bgMusic.isPlaying()) {
+        if (!musicStarted && !bgMusic.isPlaying()) {
             bgMusic.setVolume(60);
             bgMusic.playLoop();
+            musicStarted = true;
         }
     }
     

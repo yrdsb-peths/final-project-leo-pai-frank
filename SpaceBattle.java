@@ -16,7 +16,8 @@ public class SpaceBattle extends World
     private final int totalTime = 60 * 5 * 60; // 5 minutes in frames
     private boolean timeUpHandled = false; // Flag to prevent repeated handling
     private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/spacemusic.wav");// Background music for SpaceBattle
-
+    private boolean musicStarted = false;
+    
     /**
      * Constructor to set up players, health bars, timer, and UI.
      */
@@ -62,9 +63,10 @@ public class SpaceBattle extends World
     public void act() 
     {
         // Start music if not playing
-        if (!bgMusic.isPlaying()) {
+        if (!musicStarted && !bgMusic.isPlaying()) {
             bgMusic.setVolume(60);
             bgMusic.playLoop();
+            musicStarted = true;
         }
         
         if (!isGameOver) {

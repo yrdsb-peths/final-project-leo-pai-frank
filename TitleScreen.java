@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TitleScreen extends World
 {
     private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/title1.wav");
+    private boolean musicStarted = false;
     
     /**
      * Constructor to set up the main menu UI.
@@ -31,9 +32,10 @@ public class TitleScreen extends World
     public void act()
     {
         // Play title music if not already playing
-        if (!bgMusic.isPlaying()) {
+        if (!musicStarted && !bgMusic.isPlaying()) {
             bgMusic.setVolume(60);
             bgMusic.playLoop();
+            musicStarted = true;
         }
     }
     

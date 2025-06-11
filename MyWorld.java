@@ -13,7 +13,8 @@ public class MyWorld extends World {
     private final int totalTime = 60 * 5 * 60;// 5 minutes in frames
     private boolean timeUpHandled = false;// To avoid handling time-up multiple times
     private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/battlemusic.wav");//music set
-
+    private boolean musicStarted = false;
+    
     // Setup world
     public MyWorld() {
         super(800, 400, 1);// Create a world of size 800x400
@@ -56,9 +57,10 @@ public class MyWorld extends World {
     // Main game loop
     public void act() 
     {
-        if (!bgMusic.isPlaying()) {
+        if (!musicStarted && !bgMusic.isPlaying()) {
             bgMusic.setVolume(60);
             bgMusic.playLoop();
+            musicStarted = true;
         }
         
         if (!isGameOver) {

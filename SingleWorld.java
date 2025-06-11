@@ -18,7 +18,8 @@ public class SingleWorld extends World
     private ScoreLabel scoreLabel;// Label to display kills count
     private int spawnInterval = 250;// Interval (frames) between enemy spawns
     private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/solomusic.wav");// Background music for single player mode
-
+    private boolean musicStarted = false;
+    
     //Constructor for SingleWorld.
     public SingleWorld(String choice) 
     {
@@ -82,9 +83,10 @@ public class SingleWorld extends World
     public void act()
     {
         // Start music if not playing
-        if (!bgMusic.isPlaying()) {
+        if (!musicStarted && !bgMusic.isPlaying()) {
             bgMusic.setVolume(60);
             bgMusic.playLoop();
+            musicStarted = true;
         }
         
         // Spawn enemies every 250 frames
