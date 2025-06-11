@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Dog here.
+ * Cat class represents the cat character.
  * 
  * Leo, Frank 
  * 2025.6.02
@@ -13,9 +13,14 @@ public class Cat extends Actor
     int gravity = 1; 
     int jumpStrength = -15; 
     boolean onGround = false; 
-    private HealthBar myHealthBar;// make the bar owner
-    private int shootCooldown = 0;//time shoot
-    private int shootDelay = 10;//time shoot
+    private HealthBar myHealthBar;// health bar associated with the cat
+    private int shootCooldown = 0;// cooldown time between shots
+    private int shootDelay = 10;// shooting delay time
+    private GreenfootSound fallSound = new GreenfootSound("fall.wav");
+    private GreenfootSound shootSound = new GreenfootSound("shoot.wav");
+    private boolean isFallen = false;//make sure the fall sound only show one time
+    private int fallSoundDelay = 20;// the fall sound time
+    private int fallSoundTimer = 0;//the time to check the fall
     
     public Cat(HealthBar opponent)
     {
@@ -75,39 +80,58 @@ public class Cat extends Actor
                 // the shoot control button
             }
         }
-        if (myHealthBar.getHealth() <= 0) 
+        if (myHealthBar.getHealth() <= 0 && !isFallen) 
         {
-            World currentWorld = getWorld();
-            
-            if (currentWorld instanceof MyWorld) {
-                ((MyWorld)currentWorld).gameOver("dogwinner.png");
-            }else if (currentWorld instanceof SpaceBattle) {
-                ((SpaceBattle)currentWorld).gameOver("dogwinner.png");
-            } else if (currentWorld instanceof SingleWorld) {
-                ((SingleWorld)currentWorld).gameOver();
+            fallDown();
+        }
+        if (isFallen) 
+        {
+            fallSoundTimer++;
+            if (fallSoundTimer == fallSoundDelay) 
+            {
+                fallSound.play();
+            }
+            if (fallSoundTimer > fallSoundDelay) 
+            {
+                World currentWorld = getWorld();
+                if (currentWorld instanceof MyWorld) {
+                    ((MyWorld)currentWorld).gameOver("dogwinner.png");
+                } else if (currentWorld instanceof SpaceBattle) {
+                    ((SpaceBattle)currentWorld).gameOver("dogwinner.png");
+                } else if (currentWorld instanceof SingleWorld) {
+                    ((SingleWorld)currentWorld).gameOver();
+                }
+                isFallen = false;
             }
         }
     }
     
+    private void fallDown() {
+        shootSound.play();
+        isFallen = true;
+        fallSoundTimer = 0;
+    }
+    
+    // Apply gravity effect and move down
     public void fall() {
         setLocation(getX(), getY() + ySpeed);
         ySpeed += gravity;
     }
 
+    // Shoot a bullet from the cat
     public void shoot()
     {
-        bullet bullet = new bullet("cat", -5);
+        Bullet bullet = new Bullet("cat", -5);
         getWorld().addObject(bullet, getX()-30, getY());
         // the bullet shoot way with cat, from the cat X and Y
     }
     
+    // Check if the cat is on the ground
     public void checkGround() {
         if (isTouching(Ground.class)) 
         {
             ySpeed = 0;
             onGround = true;
-
-        
             while (isTouching(Ground.class))
             {
                 setLocation(getX(), getY() - 1);
@@ -118,6 +142,8 @@ public class Cat extends Actor
             onGround = false;
         }
     }
+    
+    // Reduce health by specified amount
     public void takeDamage(int amount)
     {
         myHealthBar.loseHealth(amount);

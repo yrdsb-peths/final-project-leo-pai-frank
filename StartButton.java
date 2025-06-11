@@ -45,6 +45,7 @@ public class StartButton extends Actor
         // Button clicked
         if(Greenfoot.mouseClicked(this))
         {
+            TitleScreen.stopMusic();
             if(action.equals("Battle"))
             {
                 Greenfoot.setWorld(new MyWorld());// Go to battle mode
@@ -60,6 +61,11 @@ public class StartButton extends Actor
             else if(action.equals("exit"))
             {
                 Greenfoot.setWorld(new TitleScreen());// Back to title
+                //stop world music
+                SpaceBattle.stopMusic();
+                MyWorld.stopMusic();
+                SingleWorld.stopMusic();
+                HowToPlayWorld.stopMusic();
             }
             else if(action.equals("howto"))
             {

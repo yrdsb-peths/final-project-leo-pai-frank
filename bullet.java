@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Leo
  * 2025,05.29
  */
-public class bullet extends Actor
+public class Bullet extends Actor
 {
     /**
      * Act - do whatever the bullet wants to do. This method is called whenever
@@ -15,7 +15,7 @@ public class bullet extends Actor
     private int speed = 0;//set the speed for bullet moving
     private String owner;//set the owner bullet
     
-    public bullet(String owner)
+    public Bullet(String owner)
     {
         this.owner = owner;//owner bulle
         GreenfootImage image = new GreenfootImage("bullet.png");//set image for bullet
@@ -43,7 +43,7 @@ public class bullet extends Actor
         setImage(image);// Set bullet image
     }
     
-    public bullet(String owner, int speed)
+    public Bullet(String owner, int speed)
     {
         this.owner = owner;
         this.speed = speed;

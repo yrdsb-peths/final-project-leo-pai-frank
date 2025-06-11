@@ -24,6 +24,7 @@ public class MusicButton extends Actor
         }
     }
     
+    // Toggle music on/off and update the icon
     private void toggleMusic() {
         if (isPlaying) {
             music.pause();

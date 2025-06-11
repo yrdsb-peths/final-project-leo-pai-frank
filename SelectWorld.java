@@ -1,13 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Character selection screen
+ * Character selection screen cat and dog
  * 
  * Leo 
  * 2025.06.09
  */
 public class SelectWorld extends World
 {
+    private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/select1.wav");
+
     public SelectWorld()
     {    
         super(800, 400, 1);// Set world size
@@ -22,5 +24,25 @@ public class SelectWorld extends World
         addObject(catButton, 250, 200);
         addObject(dogButton, 550, 200); 
         // Add character buttons
+        
+        MusicButton toggle = new MusicButton(bgMusic);
+        addObject(toggle, 750, 30);
+    }
+    
+    public void act()
+    {
+        // Start music if not playing
+        if (!bgMusic.isPlaying()) {
+            bgMusic.setVolume(60);
+            bgMusic.playLoop();
+        }
+    }
+    
+    public void stopped() {
+        bgMusic.stop(); 
+    } 
+    
+    public static void stopMusic() {
+        bgMusic.stop();
     }
 }

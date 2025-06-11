@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Ground - background floor image
  * 
  * Frank
- * @version (a version number or a date)
+ * 2025.06.05
  */
 public class Ground extends Actor
 {

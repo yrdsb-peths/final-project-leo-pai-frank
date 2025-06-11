@@ -12,9 +12,9 @@ public class MyWorld extends World {
     private int timeLeft;// Remaining time in frames
     private final int totalTime = 60 * 5 * 60;// 5 minutes in frames
     private boolean timeUpHandled = false;// To avoid handling time-up multiple times
-    private GreenfootSound bgMusic = new GreenfootSound("battlemusic.mp3");
+    private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/battlemusic.wav");//music set
 
-    
+    // Setup world
     public MyWorld() {
         super(800, 400, 1);// Create a world of size 800x400
         setBackground("World/resized_image.png");// Set background image
@@ -41,23 +41,26 @@ public class MyWorld extends World {
         
         timeLeft = totalTime;
         
-        bgMusic.setVolume(60);
-        bgMusic.playLoop();
-        
         MusicButton toggle = new MusicButton(bgMusic);
         addObject(toggle, 750, 30);
     }
     
     public void stopped() {
-        bgMusic.pause();
-    }
-
-     public void started() {
-        bgMusic.playLoop();
+        bgMusic.stop(); 
+    }  
+    
+    public static void stopMusic() {
+        bgMusic.stop();
     }
     
+    // Main game loop
     public void act() 
     {
+        if (!bgMusic.isPlaying()) {
+            bgMusic.setVolume(60);
+            bgMusic.playLoop();
+        }
+        
         if (!isGameOver) {
             if (timeLeft > 0) {
                 timeLeft--;

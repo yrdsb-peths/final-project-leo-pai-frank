@@ -23,6 +23,7 @@ public class CharacterButton extends Actor
         // When clicked, go to new world with selected character
         if(Greenfoot.mouseClicked(this))
         {
+            SelectWorld.stopMusic();
             Greenfoot.setWorld(new SingleWorld(choice));
         }
     }

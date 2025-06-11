@@ -11,7 +11,9 @@ public class HowToPlayWorld extends World
 {
     private int currentPage = 0;// Current page of instructions
     private static final int LINES_PER_PAGE = 15;// Number of lines per page
-    
+    private static GreenfootSound bgMusic = new GreenfootSound("Worldmode/howToPlay.wav");//music set
+
+        
     // All instruction lines to be displayed (split into pages)
     private String[] lines =
     {
@@ -34,7 +36,17 @@ public class HowToPlayWorld extends World
         ">> SpaceBattle (Free Move Mode):",
         "- Use ARROW KEYS or WASD to move freely in 2D space",
         "- Cat uses SHIFT to shoot, Dog uses F to shoot",
-        "- Dodge and shoot in open space"
+        "- Dodge and shoot in open space",
+        "",
+        ">> Background Story:",
+        "- Year: 3124. Animals rule the planet.",
+        "- Cats and Dogs were allies once,",
+        "- until ancient tech awoke...",
+        "- Robotic Drones returned with new power.",
+        "- Peace shattered. Now, a war begins.",
+        "- You must choose a side.",
+        "- Dog or Cat. Earth’s fate is yours.",
+        "- Will you survive the chaos?"
     };
     
     // Constructor: create the world and show first page
@@ -44,6 +56,13 @@ public class HowToPlayWorld extends World
         showPage(currentPage);
         addObject(new StartButton("Back", "exit"), 750, 380);// Return to title
         addObject(new StartButton("Next", "nextPage"), 650, 350);// Go to next page
+        
+        MusicButton toggle = new MusicButton(bgMusic);// Music toggle
+        addObject(toggle, 750, 30);
+    }
+    
+    public static void stopMusic() {
+        bgMusic.stop();
     }
     
     // Show instructions based on current page
@@ -70,13 +89,24 @@ public class HowToPlayWorld extends World
         // Show motivational message only on the second page
         if (page == 1) {
             String motto = "Get ready\nyour battle begins now!\nShow your strength!";
-            GreenfootImage mottoImage = new GreenfootImage(motto, 50, Color.RED, new Color(0, 0, 0, 0));
-            getBackground().drawImage(mottoImage, 120, 200);
+            GreenfootImage mottoImage = new GreenfootImage(motto, 45, Color.RED, new Color(0, 0, 0, 0));
+            getBackground().drawImage(mottoImage, 335, 125);
         }
     }
+    
+    public void stopped() {
+        bgMusic.stop(); 
+    } 
+    
     // Handle clicks on the "Next" button to change page
     public void act() 
     {
+        // Start music if not playing
+        if (!bgMusic.isPlaying()) {
+            bgMusic.setVolume(60);
+            bgMusic.playLoop();
+        }
+        
         if(Greenfoot.mouseClicked(getObjects(StartButton.class).get(1))) { 
             currentPage++;
             if (currentPage * LINES_PER_PAGE >= lines.length) {

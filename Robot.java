@@ -38,12 +38,12 @@ public class Robot extends Actor
 
             if (player instanceof Cat) 
             {
-                bullet b = new bullet("robot", 5); // Shoot right
+                Bullet b = new Bullet("robot", 5); // Shoot right
                 getWorld().addObject(b, getX() + 20, getY()); 
             } 
             else if (player instanceof Dog) 
             {
-                bullet b = new bullet("robot", -5); // Shoot left
+                Bullet b = new Bullet("robot", -5); // Shoot left
                 getWorld().addObject(b, getX() - 20, getY()); 
             }
         }
